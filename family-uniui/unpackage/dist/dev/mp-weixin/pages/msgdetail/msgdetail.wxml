@@ -1,0 +1,1 @@
+<view><view>正在查看第{{a}}条信息</view><view>内容为：{{b}}</view></view>

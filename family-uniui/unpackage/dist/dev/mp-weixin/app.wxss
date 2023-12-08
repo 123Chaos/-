@@ -1,0 +1,17 @@
+
+/* 调整轮播图样式 */
+wx-swiper .wx-swiper-dot {
+  width: 32rpx;
+  height: 5rpx;
+  border-radius: 0;
+  background: #fff;
+  opacity: 0.36;
+}
+wx-swiper .wx-swiper-dot-active {
+  opacity: 1;
+}
+.uni-tabbar .uni-tabbar__icon {
+  width: 1rpx !important;
+  height: 1rpx !important;
+}
+page{--status-bar-height:25px;--top-window-height:0px;--window-top:0px;--window-bottom:0px;--window-left:0px;--window-right:0px;--window-magin:0px}[data-c-h="true"]{display: none !important;}

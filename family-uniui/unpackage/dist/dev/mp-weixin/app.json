@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/login/login",
+    "pages/popularizing/popularizing",
+    "pages/health/health",
+    "pages/my/my",
+    "pages/detail/detail",
+    "pages/register/register",
+    "pages/search/search",
+    "pages/message/message",
+    "pages/manage/manage",
+    "pages/msgdetail/msgdetail",
+    "pages/edit/edit",
+    "pages/searchdetail/searchdetail",
+    "pages/market/market",
+    "pages/inquiry/inquiry",
+    "pages/inhospital/inhospital",
+    "pages/nurse/nurse",
+    "pages/lookafter/lookafter",
+    "pages/itemdetail/itemdetail",
+    "pages/record/record",
+    "pages/mydoc/mydoc",
+    "pages/mypre/mypre",
+    "pages/orders/orders",
+    "pages/healthdetail/healthdetail",
+    "pages/other/other",
+    "pages/hospitaldetail/hospitaldetail",
+    "pages/healthedit/healthedit"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/tabs/icon_index_inactive.png",
+        "selectedIconPath": "static/tabs/icon_index_active.png"
+      },
+      {
+        "pagePath": "pages/popularizing/popularizing",
+        "text": "阅读",
+        "iconPath": "static/tabs/icon_popularizing_inactive.png",
+        "selectedIconPath": "static/tabs/icon_popularizing_active.png"
+      },
+      {
+        "pagePath": "pages/health/health",
+        "text": "健康",
+        "iconPath": "static/tabs/icon_health_inactive.png",
+        "selectedIconPath": "static/tabs/icon_health_active.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "static/tabs/icon_my_inactive.png",
+        "selectedIconPath": "static/tabs/icon_my_active.png"
+      }
+    ]
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

@@ -85,14 +85,14 @@
     {
       "path": "pages/market/market",
       "style": {
-        "navigationBarTitleText": "护理超市",
+        "navigationBarTitleText": "服务采购",
         "navigationBarBackgroundColor": "#eee"
       }
     },
     {
       "path": "pages/inquiry/inquiry",
       "style": {
-        "navigationBarTitleText": "线上问诊"
+        "navigationBarTitleText": "申请住院"
       }
     },
     {
@@ -166,12 +166,6 @@
       "style": {
         "navigationBarTitleText": "档案管理"
       }
-    },
-    {
-      "path": "pages/inquirydetail/inquirydetail",
-      "style": {
-        "navigationBarTitleText": "医生信息"
-      }
     }
   ],
   "globalStyle": {
@@ -190,7 +184,7 @@
         "pagePath": "pages/popularizing/popularizing",
         "text": "阅读",
         "iconPath": "static/tabs/icon_popularizing_inactive.png",
-        "selectedIconPath": "static/tabs/icon_popularizing_active.png"	
+        "selectedIconPath": "static/tabs/icon_popularizing_active.png"
       },
       {
         "pagePath": "pages/health/health",

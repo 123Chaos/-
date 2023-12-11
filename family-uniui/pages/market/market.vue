@@ -17,21 +17,22 @@
       <view
         class="item"
         v-for="item in list"
-        :key="item.uid"
-        @click="jump(2, item.uid)"
+        :key="item.hospital_id"
+        @click="jump(item.hospital_id)"
       >
-        <view class="left">
-          <img :src="item.url" class="img" />
-        </view>
+        <view class="left"></view>
         <view class="right">
-          <view class="title">{{ item.title }}</view>
+          <view class="project_name">{{ item.project_name }}</view>
           <view class="lower">
-            <span class="price">￥{{ item.price }}</span>
-            <span class="count">
-              库存
-              {{ item.count }}
-              件
-            </span>
+            <span class="total_money">￥{{ item.total_money }}</span>
+          </view>
+          <view class="lower">
+            <span class="hospital_name"
+              >医院名称：{{ item.hospital_name }}</span
+            >
+          </view>
+          <view class="lower">
+            <span class="type">服务类型：{{ item.type }}</span>
           </view>
         </view>
       </view>
@@ -41,65 +42,39 @@
 
 <script setup>
 import { ref } from "vue";
+import { onReachBottom, onLoad } from "@dcloudio/uni-app";
+import api from "../../api/api";
 
-const list = ref([
-  {
-    uid: "799510721",
-    title: "猫咪 | 究极生物 | 可爱",
-    count: "1",
-    url: "https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/shuijiao.jpg",
-    price: "9999",
-  },
-  {
-    uid: "799510722",
-    title: "猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪",
-    count: "1",
-    url: "https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/shuijiao.jpg",
-    price: "9999",
-  },
-  {
-    uid: "799510723",
-    title: "猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪",
-    count: "1",
-    url: "https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/shuijiao.jpg",
-    price: "9999",
-  },
-  {
-    uid: "79951072122",
-    title: "猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪",
-    count: "1",
-    url: "https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/shuijiao.jpg",
-    price: "9999",
-  },
-  {
-    uid: "7995",
-    title: "猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪",
-    count: "1",
-    url: "https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/shuijiao.jpg",
-    price: "9999",
-  },
-  {
-    uid: "7992",
-    title: "猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪猫咪",
-    count: "1",
-    url: "https://qiniu-web-assets.dcloud.net.cn/unidoc/zh/shuijiao.jpg",
-    price: "9999",
-  },
-]);
+const list = ref([]);
 const keyword = ref("");
+const pageNum = ref(0);
 
-function jump(id, uid) {
-  if (id === 1) {
-    uni.navigateTo({
-      url: `/pages/searchdetail/searchdetail?keyword=${keyword.value}`,
-    });
-  }
-  if (id === 2) {
-    uni.navigateTo({
-      url: `/pages/itemdetail/itemdetail?uid=${uid}`,
-    });
-  }
+function jump(hospital_id) {
+  uni.navigateTo({
+    url: `/pages/itemdetail/itemdetail?uid=${hospital_id}`,
+  });
 }
+
+const init = async () => {
+  const res = await api.lookafter.list({ pageNum: pageNum.value++ });
+  if (res?.data.data) {
+    list.value = res.data.data;
+  }
+};
+
+onLoad(() => {
+  init();
+});
+
+onReachBottom(async () => {
+  uni.showLoading({
+    title: "加载中...",
+    mask: true,
+  });
+  const res = await api.lookafter.list({ pageNum: pageNum.value++ });
+  if (res?.data.data.length > 0) list.value = list.value.concat(res.data.data);
+  uni.hideLoading();
+});
 </script>
 
 <style lang="scss">
@@ -155,7 +130,7 @@ function jump(id, uid) {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        .title {
+        .project_name {
           margin-top: 16rpx;
           margin-left: 12rpx;
           margin-bottom: 10rpx;
@@ -174,17 +149,23 @@ function jump(id, uid) {
           align-items: center;
           justify-content: space-between;
           margin-bottom: 10rpx;
-          .price {
+          .total_money {
             color: #ff0000;
             font-weight: bold;
             letter-spacing: 2rpx;
             margin-left: 14rpx;
           }
-          .count {
-            font-size: 28rpx;
+          .hospital_name {
             color: #333;
-            opacity: 0.38;
-            margin-right: 16rpx;
+            letter-spacing: 2rpx;
+            margin-left: 14rpx;
+            font-size: 24rpx;
+          }
+          .type {
+            color: burlywood;
+            letter-spacing: 2rpx;
+            margin-left: 14rpx;
+            font-size: 24rpx;
           }
         }
       }

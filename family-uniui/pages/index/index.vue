@@ -1,14 +1,18 @@
 <template>
   <view class="container">
-    <view class="header">
-    </view>
+    <view class="header"> </view>
     <swiper indicator-dots autoplay circular class="swiper-container">
       <swiper-item v-for="banner in banners" :key="banner.id">
         <img :src="banner.url" class="img" />
       </swiper-item>
     </swiper>
     <view class="services">
-      <view class="service" v-for="service in services" :key="service.sid" @click="serviceHandler(service.sid)">
+      <view
+        class="service"
+        v-for="service in services"
+        :key="service.sid"
+        @click="serviceHandler(service.sid)"
+      >
         <img :src="service.url" class="img" />
         <span class="span">{{ service.sname }}</span>
       </view>
@@ -47,10 +51,10 @@ const list = ref([]);
 
 function serviceHandler(sid) {
   if (sid === "1") {
-    uni.navigateTo({ url: "/pages/orders/orders" });
+    uni.navigateTo({ url: "/pages/orders/orders?op_id=1" });
   }
   if (sid === "2") {
-    uni.navigateTo({ url: "/pages/orders/orders" });
+    uni.navigateTo({ url: "/pages/orders/orders?op_id=2" });
   }
   if (sid === "3") {
     uni.navigateTo({ url: "/pages/market/market" });
@@ -67,24 +71,24 @@ function jump(id, pid) {
 }
 
 async function init() {
-  checkLogin()
-  const res = await api.index.readingList({ banner: '1' })
+  checkLogin();
+  const res = await api.index.readingList({ banner: "1" });
   if (res.data) {
-    list.value = res.data.data
+    list.value = res.data.data;
   }
 }
 
 async function checkLogin() {
-  const isLogin = uni.getStorageSync("token")
-  if (isLogin) return
+  const isLogin = uni.getStorageSync("token");
+  if (isLogin) return;
   uni.navigateTo({
-    url: '/pages/login/login'
-  })
+    url: "/pages/login/login",
+  });
 }
 
 onBeforeMount(() => {
   init();
-})
+});
 
 // dbclick to refresh
 const dbclick = ref(false);
@@ -112,9 +116,11 @@ onTabItemTap((e) => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: linear-gradient(to bottom,
-      #1bbcb6 15%,
-      rgba(#ddd, 0.3) 31%);
+  background-image: linear-gradient(
+    to bottom,
+    #1bbcb6 15%,
+    rgba(#ddd, 0.3) 31%
+  );
 
   .header {
     display: flex;

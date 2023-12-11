@@ -1,12 +1,18 @@
 import request from '../lib/request.js';
 
 export default {
-	getOrder: (data) => {
+	cf_order: (data) => {
 		return request({
-			url: '/order/get',
+			url: '/cf_order/list',
 			method: "get",
 			data: data || {}
 		})
 	},
-	
+	wz_order: (data) => {
+		return request({
+			url: '/wz_order/list',
+			method: "get",
+			data: data || {}
+		})
+	},
 }

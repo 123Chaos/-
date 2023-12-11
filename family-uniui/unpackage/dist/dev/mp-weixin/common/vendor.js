@@ -6925,7 +6925,7 @@ const pages = [
   {
     path: "pages/inquiry/inquiry",
     style: {
-      navigationBarTitleText: "线上问诊"
+      navigationBarTitleText: "申请住院"
     }
   },
   {

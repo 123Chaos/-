@@ -75,7 +75,6 @@ function jump(id) {
   uni.navigateTo({ url: "/pages/manage/manage" });
 }
 onLoad((e) => {
-  console.log(e);
   op.value = e.op;
 });
 </script>

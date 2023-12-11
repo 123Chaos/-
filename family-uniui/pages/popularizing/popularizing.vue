@@ -1,8 +1,7 @@
 <template>
   <view class="container">
-    <view class="header">
-    </view>
-    <view class="content">
+    <view class="header"> </view>
+    <view class="content" v-if="list.length !== 0">
       <view v-for="item in list" class="card" :key="item?.id">
         <view class="upper" @click="jump(4, item?.id)">
           <img class="upper-img" :src="item.url" />
@@ -19,13 +18,13 @@
         </view>
       </view>
     </view>
+    <view v-if="list.length === 0" style="color: #ddd"> 暂无更多文章 </view>
   </view>
 </template>
 
 <script setup>
 import { ref } from "vue";
-import { onTabItemTap, onReachBottom } from "@dcloudio/uni-app";
-import { onLoad } from "@dcloudio/uni-app";
+import { onReachBottom, onLoad } from "@dcloudio/uni-app";
 import api from "../../api/api";
 
 const list = ref([]);
@@ -48,7 +47,7 @@ function jump(id, pid) {
 
 async function init() {
   const res = await api.reading.indexReading({ pageNum: pageNum.value++ });
-  if (res?.data.data) list.value = res.data.data
+  if (res?.data.data) list.value = res.data.data;
 }
 
 onLoad(() => {
@@ -61,7 +60,7 @@ onReachBottom(async () => {
     mask: true,
   });
   const res = await api.reading.indexReading({ pageNum: pageNum.value++ });
-  list.value = list.value.concat(res.data.data)
+  list.value = list.value.concat(res.data.data);
   uni.hideLoading();
 });
 </script>
@@ -73,9 +72,11 @@ onReachBottom(async () => {
   flex-direction: column;
   align-items: center;
   overflow-x: hidden;
-  background-image: linear-gradient(to bottom,
-      #1bbcb6 15%,
-      rgba(#ddd, 0.3) 31%);
+  background-image: linear-gradient(
+    to bottom,
+    #1bbcb6 15%,
+    rgba(#ddd, 0.3) 31%
+  );
 
   .header {
     display: flex;

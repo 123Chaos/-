@@ -23,7 +23,7 @@
         </view>
       </form>
     </view>
-    <view class="submit" @click="jump(1)">
+    <view class="submit" @click="jump">
       登录
       <view class="icon">
         <img src="/static/login/right-arrow.png" class="img" />
@@ -48,7 +48,7 @@ const passwordPattern = /^[0-9]{6,18}$/;
 async function jump() {
   if (validate(form)) {
     const res = await api.login.loginLogin({ phone: form.value.phoneNumber, password: form.value.password })
-    if (res.data.errno !== 0) {
+    if (res?.data.errno !== 0) {
       uni.showToast({
         title: "账号密码错误",
         duration: 1000,
@@ -56,7 +56,7 @@ async function jump() {
       });
       return;
     }
-    if (res.data !== '') {
+    if (res.data && res.data !== '') {
       if (res.data.data !== '') {
         uni.setStorageSync('token', res.data.data)
         uni.showToast({

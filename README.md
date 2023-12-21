@@ -7,23 +7,22 @@
   - know how to connect to database and develop apis
   - know how to organize your code structure
   - use Node and npm to manage your packages
-  - handle Vue3 CompositionAPI
-  - handle uniAPIS 
   - be able to develop a complete APP
- 
 
-**FrontEnd：Vue3 + uni-app**
+**FrontEnd：use YOUR favor**
 
-UI and demands are in the "FrontEnd" directory
+UI are in the "FrontEnd" directory
 
-**BankEnd：thinkJS**
+**BankEnd：use YOUR favor**
 
-api demands are in the "BackEnd" directory
+design what you can imagine!
 
-**databse: mysql**
+**databse: better be mysql**
 
 table structure are in the "data.sql" file
 
 **Demo**
 
-I have written a primitive version of this project and hope you can get something from my code.
+I have written a primitive version of this project and hope you can get something from my code. My frontend part is developed by Vue3 and compiled by **HbuilderX**, so if you don't like using a third part compiler which is my wish too, you can use your own way to set up an app compile environment maybe. For the backend part, I use the thinkJS which is light and degisned for mini project, I like it.
+
+-- Wish you enjoy this.
